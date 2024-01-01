@@ -1,27 +1,47 @@
 package application;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import entities.Contract;
+import entities.Installment;
+import services.ContractService;
 
 public class Program {
 
 	public static void main(String[] args) {
 		
 		 Scanner scan = new Scanner(System.in);
-		 List parcels = new ArrayList<>();
+		 DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		// List parcels = new ArrayList<>();
 		 
 		 System.out.println("Account datas: ");
-		 System.out.println("Number: ");
+		 System.out.println("Contract number: ");
 		 Integer account = scan.nextInt();
 		 
 		 System.out.println("Date: ");
-		 String date = scan.next();
+		 LocalDate date = LocalDate.parse(scan.next(), fmt);
 		 
 		 System.out.println("Contract value: ");
 		 Double value = scan.nextDouble();
 		 
-		 System.out.println("Number o isntallments: ");
+		 Contract contract = new Contract(account, date, value);
+		 
+		 System.out.println("Number o installments: ");
 		 Integer installments = scan.nextInt();
+		 
+		 ContractService contractService = new ContractService(null);
+		 
+		 contractService.processContract(contract,  installments);
+		 
+		 System.out.println("Parcelas: ");
+		 for(Installment installment : contract.getInstallments()) {
+			 System.out.println(installment);
+		 }
+
+		 scan.close();
 	}
 }

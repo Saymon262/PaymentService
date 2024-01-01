@@ -1,20 +1,25 @@
 package entities;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Contract {
 	
 	private Integer account;
-	private String date;
-	private Double value;
+	private LocalDate date;
+	private Double totalValue;
+	
+	private List<Installment> installments = new ArrayList<>();
 	
 	public Contract() {
-		super();
 	}
 
-	public Contract(Integer account, String date, Double value) {
+	public Contract(Integer account, LocalDate date, Double value) {
 		super();
 		this.account = account;
 		this.date = date;
-		this.value = value;
+		this.totalValue = value;
 	}
 
 	public Integer getAccount() {
@@ -25,15 +30,23 @@ public class Contract {
 		this.account = account;
 	}
 
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
-	public Double getValue() {
-		return value;
+	public Double getTotalValue() {
+		return totalValue;
+	}
+
+	public void setTotalValue(Double totalValue) {
+		this.totalValue = totalValue;
+	}
+
+	public List<Installment> getInstallments() {
+		return installments;
 	}
 }
