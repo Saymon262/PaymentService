@@ -9,6 +9,8 @@ import java.util.Scanner;
 import entities.Contract;
 import entities.Installment;
 import services.ContractService;
+import services.PaypalService;
+import services.PaypalService;
 
 public class Program {
 
@@ -33,7 +35,7 @@ public class Program {
 		 System.out.println("Number o installments: ");
 		 Integer installments = scan.nextInt();
 		 
-		 ContractService contractService = new ContractService(null);
+		 ContractService contractService = new ContractService(new PaypalService());
 		 
 		 contractService.processContract(contract,  installments);
 		 
